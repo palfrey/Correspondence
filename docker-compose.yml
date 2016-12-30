@@ -1,0 +1,44 @@
+version: '2'
+services:
+  core:
+    image: potboiler/core:latest
+    ports:
+    - 8000:8000
+    links:
+    - postgres-core:postgres
+    environment:
+      - DATABASE_URL=postgres://postgres:mysecretpassword@postgres:5432
+  postgres-core:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=mysecretpassword
+    ports:
+    - 6432:5432
+  kv:
+    image: potboiler/kv:latest
+    environment:
+    - DATABASE_URL=postgres://postgres:mysecretpassword@postgres:5432
+    - SERVER_URL=http://core:8000/log
+    - HOST=kv
+    ports:
+    - 8001:8001
+    links:
+    - postgres-kv:postgres
+    - core
+  postgres-kv:
+    image: postgres
+    environment:
+    - POSTGRES_PASSWORD=mysecretpassword
+    ports:
+    - 6433:5432
+  correspondence:
+    build: .
+    links:
+    - kv
+    ports:
+    - 5000:5000
+    volumes:
+      - .:/code
+    environment:
+      - SERVER_URL=http://kv:8001/kv
+

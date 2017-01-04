@@ -16,7 +16,8 @@ if table_req.status_code == 404:
 
 @app.route("/")
 def index():
-    return render_template("%s.html" % crdt, table=data[0], table_name=table, extra=extra)
+    mailings = requests.get(table_url).json()
+    return render_template("index.html", mailings=mailings)
 
 if __name__ == "__main__":
     app.run()

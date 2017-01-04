@@ -1,0 +1,10 @@
+<ul>
+{% for mailing in mailings %}
+<li>{{ mailing }}</li>
+{% endfor %}
+</ul>
+<form method="POST" action="/new">
+Make new mailing list
+<input type="text" id="name" />
+<input type="submit" value="Make new list" />
+</form>

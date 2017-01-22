@@ -1,0 +1,8 @@
+List name: {{ list_name }}<br />
+Subscribers:
+<ul>
+    {% for subscriber in subscribers %}
+    <li>{{ subscriber }}</li>
+    {% endfor %}
+</ul>
+<a href="/">Back to list of lists</a>

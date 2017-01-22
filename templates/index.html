@@ -1,10 +1,10 @@
 <ul>
 {% for mailing in mailings %}
-<li>{{ mailing }}</li>
+<li><a href="/list/{{ mailing }}">{{ mailing }}</a></li>
 {% endfor %}
 </ul>
 <form method="POST" action="/new">
 Make new mailing list
-<input type="text" id="name" />
+<input type="text" id="name" name="name" />
 <input type="submit" value="Make new list" />
 </form>

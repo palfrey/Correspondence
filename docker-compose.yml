@@ -41,4 +41,5 @@ services:
       - .:/code
     environment:
       - SERVER_URL=http://kv:8001/kv
+    command: bash -c "./wait-for-port.sh kv 8001 && flask run --host=0.0.0.0"
 

@@ -5,4 +5,15 @@ Subscribers:
     <li>{{ subscriber }}</li>
     {% endfor %}
 </ul>
+Pending:
+<ul>
+    {% for pend in pending %}
+    <li>{{ pend }}</li>
+    {% endfor %}
+</ul>
+<form method="POST" action="/list/foo">
+    Add subscriber
+    <input type="text" id="subscriber" name="subscriber" />
+    <input type="submit" value="Add subscriber" />
+</form>
 <a href="/">Back to list of lists</a>
